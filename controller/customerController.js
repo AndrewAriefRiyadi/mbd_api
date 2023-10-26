@@ -5,6 +5,18 @@ const getAllCustomer = async (req,res) => {
     res.send(await result[0][0])
 };
 
+const getCustomerById = async (req,res) => {
+    const {id} = req.params;
+    try{
+        const result = await pool.query("call getCustomerById(?);",[id])
+        res.send(await result[0][0])
+    } catch (error){
+        res.status(500).json({ message: 'Tidak ada customer sesuai id', error: error.message });
+    }
+    
+    
+};
+
 const createCustomer = async (req, res) => {
     const { name, age, contact, email } = req.body;
     console.log(req.body)
@@ -27,8 +39,21 @@ const updateCustomer = async (req, res) => {
     }
 };
 
+const deleteCustomerById = async (req,res) => {
+    const {id} = req.params;
+    try {
+        const result = await pool.query("call DeleteCustomer(?) ;",[id]);
+        res.status(201).json({ message: 'Pelanggan berhasil dihapus' });
+    } catch (error) {
+        res.status(500).json({ message: 'Terjadi kesalahan saat menghapus pelanggan', error: error.message });
+    }
+    
+};
+
 export {
     getAllCustomer,
     createCustomer,
+    getCustomerById,
+    deleteCustomerById,
     updateCustomer
 };

@@ -12,7 +12,7 @@ const router = Router()
 router.use("/customer",customer);
 router.use("/supplier",supplier);
 router.use("/kategori",kategori);
-router.use("/produk_supplier",produk_supplier);
+router.use("/produkSupplier",produk_supplier);
 router.use("/pembelian",pembelian);
 
 export default router;
