@@ -1,12 +1,18 @@
 import { Router } from "express";
 
 import {
-    getAllPembelian
+    getAllPembelian,
+    getPembelianById,
+    createPembelian,
+    deletePembelianById,
 } from "../controller/pembelianController.js";
 
 const router = Router()
 
-router.get("/all",getAllPembelian);
+router.get("/",getAllPembelian);
+router.get("/detail/:id",getPembelianById);
+router.delete("/detail/:id",deletePembelianById);
+router.post("/",createPembelian);
 
 
 export default router;

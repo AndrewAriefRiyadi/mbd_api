@@ -10,11 +10,11 @@ import {
 
 const router = Router()
 
-router.get("/all",getAllCustomer);
-router.get("/:id",getCustomerById);
-router.delete("/delete/:id",deleteCustomerById);
-router.post("/createCustomer",createCustomer);
-router.put("/updateCustomer",updateCustomer);
+router.get("/",getAllCustomer);
+router.get("/detail/:id",getCustomerById);
+router.delete("/detail/:id",deleteCustomerById);
+router.post("/",createCustomer);
+router.put("/detail/:id",updateCustomer);
 
 
 export default router;

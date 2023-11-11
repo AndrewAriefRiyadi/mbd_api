@@ -21,7 +21,7 @@ const createProdukSupplier = async (req, res) => {
     const { supplierID, productName, unit, price, stock, category_id } = req.body;
     console.log(req.body)
     try {
-        const result = await pool.query("call CreateProdukSupplier(?,?,?,?,?,?)", [supplierID, productName, unit, price, stock, category_id]);
+        const result = await pool.query("call CreateProdukSutpplier(?,?,?,?,?,?)", [supplierID, productName, unit, price, stock, category_id]);
         res.status(201).json({ message: 'Produk Supplier berhasil dibuat' });
     } catch (error) {
         res.status(500).json({ message: 'Terjadi kesalahan saat membuat produk supplier', error: error.message });
@@ -29,8 +29,9 @@ const createProdukSupplier = async (req, res) => {
 };
 
 const updateProdukSupplier = async (req, res) => {
+    const {id} = req.params;
     try {
-        const { id,supplierID, productName, unit, price, stock, category_id } = req.body;
+        const { supplierID, productName, unit, price, stock, category_id } = req.body;
         const result = await pool.query('call UpdateProdukSupplier(?,?,?,?,?,?,?)', [id, supplierID, productName, unit, price, stock, category_id]);
         res.status(200).json({ message: 'Data Produk Supplier berhasil diperbarui' });
     } catch (error) {
