@@ -29,8 +29,9 @@ const createProdukSupplier = async (req, res) => {
 };
 
 const updateProdukSupplier = async (req, res) => {
+    const {id} = req.params;
     try {
-        const { id,supplierID, productName, unit, price, stock, category_id } = req.body;
+        const { supplierID, productName, unit, price, stock, category_id } = req.body;
         const result = await pool.query('call UpdateProdukSupplier(?,?,?,?,?,?,?)', [id, supplierID, productName, unit, price, stock, category_id]);
         res.status(200).json({ message: 'Data Produk Supplier berhasil diperbarui' });
     } catch (error) {

@@ -22,20 +22,21 @@ const createSupplier = async (req, res) => {
     console.log(req.body)
     try {
         const result = await pool.query("call createSupplier(?,?,?,?)", [name, address, contact, email]);
-        res.status(201).json({ message: 'Pelanggan berhasil dibuat' });
+        res.status(201).json({ message: 'Supplier berhasil dibuat' });
     } catch (error) {
-        res.status(500).json({ message: 'Terjadi kesalahan saat membuat pelanggan', error: error.message });
+        res.status(500).json({ message: 'Terjadi kesalahan saat membuat Supplier', error: error.message });
     }
 };
 
 const updateSupplier = async (req, res) => {
+    const {id} = req.params;
     try {
-        const { id, name, address, contact, email } = req.body;
+        const { name, address, contact, email } = req.body;
         const result = await pool.query('call updateSupplier(?,?,?,?,?)',[id,name,address,contact,email]);
-        res.status(200).json({ message: 'Data pelanggan berhasil diperbarui' });
+        res.status(200).json({ message: 'Data supplier berhasil diperbarui' });
     } catch (error) {
-        console.error("Kesalahan saat memperbarui pelanggan:", error);
-        res.status(500).json({ message: 'Terjadi kesalahan saat memperbarui pelanggan', error: error.message });
+        console.error("Kesalahan saat memperbarui Supplier:", error);
+        res.status(500).json({ message: 'Terjadi kesalahan saat memperbarui Supplier', error: error.message });
     }
 };
 
@@ -43,9 +44,9 @@ const deleteSupplierById = async (req,res) => {
     const {id} = req.params;
     try {
         const result = await pool.query("call deleteSupplier(?) ;",[id]);
-        res.status(201).json({ message: 'Pelanggan berhasil dihapus' });
+        res.status(201).json({ message: 'Supplier berhasil dihapus' });
     } catch (error) {
-        res.status(500).json({ message: 'Terjadi kesalahan saat menghapus pelanggan', error: error.message });
+        res.status(500).json({ message: 'Terjadi kesalahan saat menghapus Supplier', error: error.message });
     }
     
 };

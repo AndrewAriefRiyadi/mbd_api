@@ -1,12 +1,20 @@
 import { Router } from "express";
 
 import {
-    getAllKategori
+    getAllKategori,
+    getKategoriById,
+    createKategori,
+    updateKategori,
+    deleteKategoriById
 } from "../controller/kategoriController.js";
 
 const router = Router()
 
-router.get("/all",getAllKategori);
+router.get("/",getAllKategori);
+router.get("/:id",getKategoriById);
+router.delete("/:id",deleteKategoriById);
+router.post("/",createKategori);
+router.put("/:id",updateKategori);
 
 
 export default router;

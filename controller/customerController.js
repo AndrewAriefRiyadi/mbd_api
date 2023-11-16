@@ -29,8 +29,9 @@ const createCustomer = async (req, res) => {
 };
 
 const updateCustomer = async (req, res) => {
+    const {id} = req.params;
     try {
-        const { id, name, age, contact, email } = req.body;
+        const { name, age, contact, email } = req.body;
         const result = await pool.query('call UpdateCustomer(?,?,?,?,?)',[id,name,age,contact,email]);
         res.status(200).json({ message: 'Data pelanggan berhasil diperbarui' });
     } catch (error) {
